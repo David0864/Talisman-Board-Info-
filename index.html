@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Talisman Board Info</title>
+  </head>
+  <body>
+    <img
+      src="./imgs/Four_regions (1).png"
+      id="map-image"
+      style="width: 2560px; max-width: 100%; height: auto;"
+      alt=""
+      usemap="#map"
+    />
+    <map name="map">
+        <area shape="rect" coords="232, 405, 317, 457" alt="Chapel" data-tooltip="<div class='tooltip-content'><strong>Chapel:</strong><br><br>Based on Alignment<br><br><em>Evil:</em> Lose one life.<br><em>Neutral:</em> Heal up to your life value at the cost of one gold each.<br><em>Good:</em> Either heal up to your life value for free, or pray by rolling one die:<ul><li>1-4 Ignored.</li><li>5 Gain 1 life.</li><li>6 Gain 1 Spell.</li></ul></div>">
+        <area shape="rect" coords="318, 408, 408, 456" alt="Area 2" data-tooltip="<div class='tooltip-content'><strong>Hills:</strong><br><br>Draw 1 card.<br><br><em>Do not draw a card if there is already one in this space.</em></div>">
+        <area shape="rect" coords="409, 412, 499, 454" alt="Area 2" data-tooltip="<div class='tooltip-content'><strong>Sentinel:</strong><br><br>Draw 1 card.<br><br><em>Do not draw a card if there is already one in this space.</em><br><br>If you are crossing to the Middle Region, do not draw a card. Instead, you must first defeat the Sentinel with Strength 9. Do not fight the Sentinel when crossing from the Middle Region.</div>">
+    </map>
+
+    <div class="tooltip"></div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./imageMapResizer.min.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            $("map").imageMapResize();
+            
+            $("area").hover(function() {
+                let tooltipText = $(this).data("tooltip");
+                $(".tooltip").html(tooltipText).css({top: event.pageY + 10, left: event.pageX + 10}).show();
+            });
+
+            $("area").mouseout(function() {
+                $(".tooltip").hide();
+            });
+        });
+    </script>
+  </body>
 </html>
